@@ -80,7 +80,7 @@ namespace dcp.lib.Formatters
         }
         public override Object Format(Row row)
         {
-            return $"INSERT INTO [{tableName}] VALUES ({String.Join(",", getValues(row))});";
+            return $"INSERT INTO {tableName} VALUES ({String.Join(",", getValues(row))});";
         }
         List<string> getValues(Row row)
         {
