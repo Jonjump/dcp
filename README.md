@@ -1,7 +1,7 @@
 # dcp
 Copy bulk data to/from databases, csv, Excel.   
 
-I wanted a utility to move data between various places, without having to write code or document schemas.  It works as a library, or via the command line tool.  
+I wanted a utility to move data between various places, without having to write code or document schemas.  It works as a library, or via the command line tool.  It does that by reading what schema information is available from the source and target and converting where necessary.  
 
 Thanks to making use of good libraries, on a decent network you should move several thousand lines a second.
 
@@ -43,11 +43,11 @@ dotnet dcp.dll -- options inputfile outputfile
 Files with extensions csv, xlsx will just work.   For a database source or target, the filename format is sql://connectionString.  Typically, you will be using something like "sql://Server=SERVERNAME;Database=DATABASENAME;Trusted_Connection=True;"
 
 ## FAQ
-"My data copy fails, but I am not getting a specific input line number for the error" : set the buffer to 1 ("-b 1"), which will go slower, but will give you a specific line number for the problem data.
+"My data copy fails, but I am not getting a specific input line number for the error" : set the buffer to 1 ("-b 1"), which will be slower, but will give you a specific line number for the problem data.
 
 "My network is very slow and things time out" : reduce the buffer size (which is 100 by default).   Try -b 10 to start with.
 
-"My data imports with a wrong format to my database" : obviously there is no limit to the number of odd formats people can give you in a csv file or excel.   Import it to a staging table, and then fix the format in SQL when you copy to the target table.
+"My data imports with the wrong format to my database" : obviously there is no limit to the number of odd formats people can give you in a csv file or excel.   Import it to a staging table, and then fix the format in SQL when you copy to the target table.
 
 ### Prerequisites
 
@@ -55,6 +55,9 @@ You will need [dotnet core](https://dotnet.microsoft.com/download)
 
 ## ToDo
 Oracle, Postgres and MySql database readers and writers.
+
+## Tests
+You will need a sql server to run the sqlserver tests. A local Sqlexpress works fine.
 
 ## License
 
